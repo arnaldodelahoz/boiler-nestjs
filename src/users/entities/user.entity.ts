@@ -1,5 +1,12 @@
 import { Role } from '../../roles/entities/role.entity';
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -9,17 +16,19 @@ export class User {
   @Column()
   name: string;
 
-  @Column({name:"last_name"})
+  @Column({ name: 'last_name' })
   lastName: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
   password: string;
 
-  @OneToOne((type) => Role)
-  @JoinColumn({name:"role_id"})
-  role: Role;
+  @Column({ name:"role_id" })
+  roleId: number;
 
+  @ManyToOne(() => Role)
+  @JoinColumn({ name: 'role_id' })
+  role: Role;
 }
