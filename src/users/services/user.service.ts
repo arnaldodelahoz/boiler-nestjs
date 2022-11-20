@@ -7,7 +7,7 @@ import { CreateUserDto } from '../dtos/user.dtos';
 import { User } from '../entities/user.entity';
 
 @Injectable()
-export class UserService extends AbstractService<User, number>{
+export class UserService extends AbstractService<User, number> {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
@@ -16,9 +16,9 @@ export class UserService extends AbstractService<User, number>{
   }
 
   async findOneByEmail(email: string): Promise<User | undefined> {
-    return await this.userRepository.findOne({
-      where:{
-        email
+    return await super.findOne({
+      where: {
+        email,
       },
       relations: {
         role: true,
@@ -26,8 +26,8 @@ export class UserService extends AbstractService<User, number>{
     });
   }
 
-  async create(dto:CreateUserDto): Promise<User | undefined>{
-    dto.password = await hash(dto.password,10);
+  async create(dto: CreateUserDto): Promise<User | undefined> {
+    dto.password = await hash(dto.password, 10);
     return await super.create(dto);
   }
 }

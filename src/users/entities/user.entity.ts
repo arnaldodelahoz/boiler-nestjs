@@ -4,7 +4,6 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -25,7 +24,7 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ name:"role_id" })
+  @Column({ name: 'role_id' })
   roleId: number;
 
   @ManyToOne(() => Role)

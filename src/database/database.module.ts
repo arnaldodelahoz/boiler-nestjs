@@ -19,11 +19,11 @@ import config from '../config';
           database: dbName,
           migrationsTableName: 'migrations',
           synchronize: false,
-          entities: [__dirname+'/../**/*.entity{.ts,.js}'],
-          migrations: [__dirname+'/../database/migrations/*{.ts,.js}'],
+          entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+          migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
           migrationsRun: false,
           cli: {
-            migrationsDir: __dirname+'/../database/migrations',
+            migrationsDir: __dirname + '/../database/migrations',
           },
         };
       },
